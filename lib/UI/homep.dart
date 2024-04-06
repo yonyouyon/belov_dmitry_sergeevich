@@ -1,6 +1,10 @@
 import 'dart:math';
+import 'package:belov_dmitry_sergeevich/generated/locale_keys.g.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({super.key, required this.title});
@@ -28,6 +32,16 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
         title: Text(widget.title),
+        leading: IconButton(
+          icon: Icon(Icons.language),
+          onPressed: () {
+            if (context.locale == Locale('ru')) {
+              context.setLocale(Locale('en'));
+            } else {
+              context.setLocale(Locale('ru'));
+            }
+          },
+        ),
       ),
       body: Center(
         child: Column(
@@ -40,23 +54,23 @@ class _ProfileState extends State<Profile> {
             ),
             const SizedBox(height: 20),
             itemProfile(
-                'ФИО', 'Белов Дмитрий Сергеевич',
+                LocaleKeys.profile_name.tr(), 'Белов Дмитрий Сергеевич',
                 CupertinoIcons.person),
             const SizedBox(height: 10),
             itemProfile(
-                'Телефон', '123456789',
+                LocaleKeys.phone.tr(), '123456789',
                 CupertinoIcons.phone),
             const SizedBox(height: 10),
             itemProfile(
-                'Адрес', 'abc 12',
+                LocaleKeys.address.tr(), 'abc 12',
                 CupertinoIcons.location),
             const SizedBox(height: 10),
-            itemProfile(''
-                'Почта', 'ВаяЭтоЧеЗаМонстр@gmail.com',
+            itemProfile(
+                LocaleKeys.mail.tr(), 'ВаяЭтоЧеЗаМонстр@gmail.com',
                 CupertinoIcons.mail),
             const SizedBox(height: 30,),
-            const Text(
-              'Сколько очков крутости заслуживает эта работа?',
+            Text(
+              LocaleKeys.generation_question.tr(),
             ),
             const SizedBox(height: 20,),
             Row(
